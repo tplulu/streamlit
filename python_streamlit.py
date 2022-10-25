@@ -87,7 +87,7 @@ Bothsexes="x"
 options = st.multiselect(
     'choisisez un genre pour voir combien de pourcentage il représente dans le taux de cancer',
     ['homme', 'femme', 'mixte'])
-st.write('You selected:', options)
+
 if ('homme' in options) :
     Male = 'Male'
 else :
