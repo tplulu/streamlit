@@ -1,3 +1,4 @@
+from array import array
 import pandas as pd
 import numpy as np
 import seaborn as sb
@@ -79,9 +80,33 @@ ax = sb.boxplot(
 plt.title("suppression des valeurs abérantes")
 st.pyplot(fig2)
 
+cancer3=cancer2
+Female="x"
+Male="x"
+Bothsexes="x"
+options = st.multiselect(
+    'choisisez un genre pour voir combien de pourcentage il représente dans le taux de cancer',
+    ['homme', 'femme', 'mixte'])
+st.write('You selected:', options)
+if ('homme' in options) :
+    Male = 'Male'
+else :
+    Male = 'x'
+if ('femme' in options) :
+    Female = 'Female'
+else :
+    Female = 'x'
+if('mixte' in options) :
+    Bothsexes = 'Both sexes'
+else :
+    Bothsexes = 'x'
+
+
+if (Male !='x' or Female !='x' or Bothsexes !='x') :
+    cancer3 = cancer3.query("Dim1=='"+Female+"' or Dim1=='"+Male+"' or Dim1=='"+Bothsexes+"'")
 fig5, ax = plt.subplots()
 fig5 = sb.catplot(
-    data=cancer2,
+    data=cancer3,
     x="Dim1", 
     y="First Tooltip", 
     kind="bar", 
